@@ -17,3 +17,5 @@ Also it can make simple image building/rebuilding. But it's rather experimental.
     * delete
     * append
   * address conversion between virtual address and relative virtual address.
+
+Examine source code for more. I may forget something.
