@@ -18,4 +18,4 @@ Also it can make simple image building/rebuilding. But it's rather experimental.
     * append
   * address conversion between virtual address and relative virtual address.
 
-Examine source code for more. I may forget something.
+Examine source code for more. I can forget something.
