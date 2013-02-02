@@ -1,6 +1,8 @@
 = Introduction =
 
-*PEImage* library can be used to parse 32/64 bit images. Also it can make simple image building/rebuilding. But it's rather experimental.
+*PEImage* library can be used to parse 32/64 bit images. Image can be loaded from stream, file or from mapped image.
+
+Also it can make simple image building/rebuilding. But it's rather experimental.
 
 
 = Supported features =
