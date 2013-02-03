@@ -7,15 +7,66 @@ Also it can make simple image building/rebuilding. But it's rather experimental.
 
 = Supported features =
 
-  * parsing exports
-  * parsing imports
-  * parsing relocations
-  * parsing resources
-  * parsing .pdata section (for ARM images)
+== It can load image ==
+
+  * from file
+  * from stream
+  * from mapped image (i.e. from module in current process address space, like ntdll)
+
+== It can parse ==
+
+  * 32/64 bit images. You don't need to worry about field sizes.
+  * exports
+  * imports
+  * relocations
+  * thread local storage table
+  * long section names from COFF table
+  * resources (raw only right now)
+  * exception records in .pdata section (useful for example for ARM executables)
   * overlay functions
-    * extract
+    * extract to file
     * delete
-    * append
+    * append to other file
   * address conversion between virtual address and relative virtual address.
 
-Examine source code for more. I can forget something.
+== Selective parsing ==
+
+You can specify what stage to parse. For example, you can tell it to load only base image and not to waste time for parsing other elements. Or you can specify combination of things to load (exports+imports+relocs...)
+
+== Rebuilding image parts ==
+
+  * export
+
+== Saving ==
+
+You can modify image and save it to file or stream. It's easy way to make some patches programmatically.
+
+Also you can dump only needed part, like section, overlay, resource.
+
+== Portability ==
+
+It was written with portability in mind and uses minimum platform dependency. So you can build library for
+
+  * Win32, Win64
+  * OS X
+  * other platforms to be supported by Delphi
+
+== Code analysis ==
+
+  * PE.Image.x86 unit
+    * searching relative jumps and calls in sections
+
+== Usage examples ==
+
+The library can be used for
+
+  * learning PE format
+  * creating packers or protectors
+  * creating unpackers
+  * creating linker for your compiler
+  * creating proxy dlls
+  * ...
+
+== Other ==
+
+*PE.MemoryStream* (*TPEMemoryStream*) allows to read mapped in-memory executable as simple stream.
