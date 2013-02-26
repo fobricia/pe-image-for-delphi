@@ -1,6 +1,8 @@
 = Introduction =
 
-*PEImage* library can be used to parse 32/64 bit images. Image can be loaded from stream, file or from mapped image.
+*PEImage* library can be used to parse 32/64 bit executable images. Image can be loaded from stream, file or from mapped image.
+
+The library if part of [http://vdisasm.com/ VDisAsm Project]
 
 Also it can make simple image building/rebuilding. But it's rather experimental.
 
@@ -35,13 +37,25 @@ You can specify what stage to parse. For example, you can tell it to load only b
 
 == Rebuilding image parts ==
 
+Units PE.Build.??? are responsible for building image directory data. Currently supported:
+
   * export
+  * import
 
 == Saving ==
 
 You can modify image and save it to file or stream. It's easy way to make some patches programmatically.
 
 Also you can dump only needed part, like section, overlay, resource.
+
+== DLL Loading ==
+
+Parsed image can be loaded as executable image in similar way Windows Loader does. It works only for DLLs. Don't try to load EXEs this way.
+
+== Code analysis ==
+
+  * PE.Image.x86 unit
+    * searching relative jumps and calls in sections
 
 == Portability ==
 
@@ -51,10 +65,6 @@ It was written with portability in mind and uses minimum platform dependency. So
   * OS X
   * other platforms to be supported by Delphi
 
-== Code analysis ==
-
-  * PE.Image.x86 unit
-    * searching relative jumps and calls in sections
 
 == Usage examples ==
 
@@ -66,6 +76,8 @@ The library can be used for
   * creating linker for your compiler
   * creating proxy dlls
   * ...
+
+Some examples are provided in trunk.
 
 == Other ==
 
