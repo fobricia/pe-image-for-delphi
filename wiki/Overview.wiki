@@ -41,6 +41,7 @@ Units PE.Build.??? are responsible for building image directory data. Currently 
 
   * export
   * import
+  * resources
 
 == Saving ==
 
@@ -59,12 +60,7 @@ Parsed image can be loaded as executable image in similar way Windows Loader doe
 
 == Portability ==
 
-It was written with portability in mind and uses minimum platform dependency. So you can build library for
-
-  * Win32, Win64
-  * OS X
-  * other platforms to be supported by Delphi
-
+It was written with portability in mind and uses minimum platform dependency.
 
 == Usage examples ==
 
