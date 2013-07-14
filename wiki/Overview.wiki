@@ -42,6 +42,7 @@ Units PE.Build.??? are responsible for building image directory data. Currently 
   * export
   * import
   * resources
+  * relocations
 
 == Saving ==
 
@@ -49,9 +50,9 @@ You can modify image and save it to file or stream. It's easy way to make some p
 
 Also you can dump only needed part, like section, overlay, resource.
 
-== DLL Loading ==
+== Loading and Mapping Executalbe Image ==
 
-Parsed image can be loaded as executable image in similar way Windows Loader does. It works only for DLLs. Don't try to load EXEs this way.
+Parsed image can be loaded as executable image in similar way Windows Loader does. Now it works for DLLs and EXEs. This functionality have to be used very carefully because not all images can run properly.
 
 == Code analysis ==
 
