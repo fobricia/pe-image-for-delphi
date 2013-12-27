@@ -25,7 +25,7 @@ Also it can make simple image building/rebuilding. But it's rather experimental.
   * thread local storage table
   * long section names from COFF table
   * resources (raw only right now)
-  * exception records in .pdata section (useful for example for ARM executables)
+  * exception records in .pdata section (useful for example for ARM, x64 executables)
   * overlay functions
     * extract to file
     * delete
@@ -81,4 +81,6 @@ Some examples are provided in trunk.
 
 == Other ==
 
-*PE.MemoryStream* (*TPEMemoryStream*) allows to read mapped in-memory executable as simple stream.
+*TPEMemoryStream* class (unit *PE.MemoryStream*) allows to read mapped in-memory executable as simple stream.
+
+*TProcessModuleStream* class (unit *PE.ProcessModuleStream*) allows to read module in other process as a stream.
