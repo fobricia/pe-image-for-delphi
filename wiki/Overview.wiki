@@ -14,6 +14,7 @@ Also it can make simple image building/rebuilding. But it's rather experimental.
   * from file
   * from stream
   * from mapped image (i.e. from module in current process address space, like ntdll)
+  * from module in other process
 
 == It can parse ==
 
