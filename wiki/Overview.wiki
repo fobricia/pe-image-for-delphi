@@ -24,7 +24,9 @@ Also it can make simple image building/rebuilding. But it's rather experimental.
   * relocations
   * thread local storage table
   * long section names from COFF table
-  * resources (raw only right now)
+  * resources: raw and decoding following formats
+    * RT_BITMAP (PE.Resources.Windows.Bitmap.pas)
+    * RT_VERSION (PE.Resources.VersionInfo.pas)
   * exception records in .pdata section (useful for example for ARM, x64 executables)
   * overlay functions
     * extract to file
@@ -34,7 +36,7 @@ Also it can make simple image building/rebuilding. But it's rather experimental.
 
 == Selective parsing ==
 
-You can specify what stage to parse. For example, you can tell it to load only base image and not to waste time for parsing other elements. Or you can specify combination of things to load (exports+imports+relocs...)
+You can specify what stage to parse. For example, you can tell it to load only base image and not to waste time for parsing other elements. Or you can specify combination of things to load (exports+imports+relocs...). See TParserFlag's PF_xxx in PE.Common.pas
 
 == Rebuilding image parts ==
 
@@ -47,7 +49,7 @@ Units PE.Build.??? are responsible for building image directory data. Currently 
 
 == Saving ==
 
-You can modify image and save it to file or stream. It's easy way to make some patches programmatically.
+You can modify image and save it to file or stream. It's easy way to make some patches programmatically. Faster way is to convert virtual addresses into file offsets and patch directly in file.
 
 Also you can dump only needed part, like section, overlay, resource.
 
