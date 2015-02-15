@@ -1,0 +1,87 @@
+#summary Loading Image.
+
+=Creating image instance=
+
+To work with PE image first create instance of class class *TPEImage*
+
+{{{
+uses
+  PE.Image;
+
+...
+
+procedure example;
+var
+  img: TPEImage;
+begin
+  img := TPEImage.Create;
+  try
+    // use image
+  finally
+    img.Free;
+  end;
+end;
+}}}
+
+Usually you'll need two units: *PE.Image* and *PE.Common*.
+
+Then you can either build new image or load existing one.
+
+=Loading image=
+
+When loading image you need to specify
+
+==Image source==
+
+It can be _TStream_, _File_ or _Running Process_.
+
+==Things to parse==
+
+To make image loading faster you can specify what image parts to load.
+
+Currently all sections are loaded into memory and can be accessed by *Sections* property.
+
+See *TParserFlag* in *PE.Common* unit
+
+||Flag||Description||Property to Access||
+||PF_EXPORT||Parse exported symbols.||ExportSyms||
+||PF_IMPORT||Parse imported symbols.||Imports||
+||PF_IMPORT_DELAYED||Parse delayed imports.||ImportsDelayed||
+||PF_RELOCS||Parse relocations (fixups)||Relocs||
+||PF_TLS||Parse Thread-Local Storage directory||TLS||
+||PF_RESOURCES||Parse resources||ResourceTree||
+
+By default all flags used (DEFAULT_PARSER_FLAGS which equals ALL_PARSER_FLAGS)
+
+==Image layout==
+or image kind, declared in *PE.Common*
+||PEIMAGE_KIND_DISK||use disk layout||
+||PEIMAGE_KIND_MEMORY||use memory layout||
+
+When you load normal PE use PEIMAGE_KIND_DISK.
+
+PEIMAGE_KIND_MEMORY is used to load image from already running (mapped) image.
+
+=Functions to load image=
+
+{{{
+LoadFromStream
+}}}
+You can define source stream, things to parse and image layout.
+
+{{{
+LoadFromFile
+}}}
+You can define source file name and things to parse. Disk layout used.
+
+{{{
+LoadFromMappedImage
+}}}
+Load image from module in current process.<br>
+There are overloaded methods to define *module file name* or *module base address* in current process.
+You can define things to parse. Memory layout used.
+{{{
+LoadFromProcessImage
+}}}
+Load image from module in any available process.<br>
+You can define *process id*, *module address* and things to parse. Memory layout used.
