@@ -1,8 +1,6 @@
 #summary Loading Image.
 
-=Creating image instance=
-
-To work with PE image first create instance of class class *TPEImage*
+In most cases to work with PE image first create instance of *TPEImage* class
 
 {{{
 uses
@@ -23,9 +21,23 @@ begin
 end;
 }}}
 
-Usually you'll need two units: *PE.Image* and *PE.Common*.
+Some functions are static and don't need class creation. Like *IsPE* function to check if file has MZ/PE signatures
 
-Then you can either build new image or load existing one.
+{{{
+if TPEImage.IsPE('myfile.exe') then
+begin
+  // it is PE image (MZ/PE signatures present)
+end
+else
+begin
+  // it's not
+end;
+}}}
+
+Two base units are:
+
+||PE.Image||Contains TPEImage class which does most of the work||
+||PE.Common||Contains base types and constants||
 
 =Loading image=
 
@@ -80,8 +92,12 @@ LoadFromMappedImage
 Load image from module in current process.<br>
 There are overloaded methods to define *module file name* or *module base address* in current process.
 You can define things to parse. Memory layout used.
+
+Internally it creates memory stream mapped to module (see *TPEMemoryStream* in unit PE.MemoryStream) and loads image from the stream.
 {{{
 LoadFromProcessImage
 }}}
 Load image from module in any available process.<br>
 You can define *process id*, *module address* and things to parse. Memory layout used.
+
+Internally it creates memory stream to read from other process (see *TProcessModuleStream* in unit PE.ProcessModuleStream) and loads image from the stream.
